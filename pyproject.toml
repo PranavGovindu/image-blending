@@ -1,0 +1,21 @@
+[project]
+name = "iiscc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "aiohttp>=3.12.15",
+    "django>=5.2.5",
+    "huggingface-hub>=0.34.4",
+    "langchain>=0.3.27",
+    "langchain-community>=0.3.27",
+    "langchain-core>=0.3.74",
+    "onnxruntime>=1.22.1",
+    "opencv-python-headless>=4.12.0.88",
+    "pillow>=11.3.0",
+    "pydantic>=2.11.7",
+    "python-dotenv>=1.1.1",
+    "rembg>=2.0.67",
+    "requests>=2.32.4",
+]

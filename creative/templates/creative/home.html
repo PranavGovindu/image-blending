@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Creative Generator</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif; margin: 2rem auto; max-width: 900px; padding: 0 1rem; }
+      header { margin-bottom: 1.25rem; }
+      form textarea { width: 100%; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; }
+      .story { white-space: pre-wrap; }
+      footer { margin-top: 2rem; color: #6b7280; font-size: 0.9rem; }
+      img { max-width: 100%; height: auto; border-radius: 6px; }
+      .actions { margin-top: 0.75rem; }
+      button { padding: 0.5rem 0.75rem; border: 1px solid #111827; background: #111827; color: white; border-radius: 6px; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>LangChain + Django Creative Assignment (Scaffold)</h1>
+      <p>Enter a prompt (or leave empty) to generate a short story, character and background descriptions, and a combined placeholder image.</p>
+    </header>
+
+    <section class="card">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+          <button type="submit">Generate</button>
+        </div>
+      </form>
+    </section>
+
+    {% if story %}
+    <section class="grid" style="margin-top: 1rem;">
+      <div class="card">
+        <h3>Short Story</h3>
+        <div class="story">{{ story }}</div>
+      </div>
+      <div class="card">
+        <h3>Combined Scene Image</h3>
+        {% if combined_image_url %}
+          <img src="{{ combined_image_url }}" alt="Combined scene" />
+        {% endif %}
+      </div>
+      <div class="card">
+        <h3>Character Description</h3>
+        <p>{{ character_description }}</p>
+      </div>
+      <div class="card">
+        <h3>Background Description</h3>
+        <p>{{ background_description }}</p>
+      </div>
+    </section>
+    {% endif %}
+
+    <footer>
+      <p>Scaffold uses placeholder generation. Replace with LangChain pipelines and open-source image models per README.</p>
+    </footer>
+  </body>
+  </html>
+
+
